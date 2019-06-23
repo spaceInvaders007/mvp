@@ -5,10 +5,12 @@ import styled from 'styled-components';
 import IdeaForm from './IdeaForm.jsx';
 
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      data: [],
       hideButton: false,
       hideForm: false,
       ideaTitle: '',
@@ -18,6 +20,35 @@ class App extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
 
   }
+
+  componentDidMount() {
+     var self = this;
+     axios.get('http://localhost:3000/addidea')
+     .then(function(response) {
+       self.setState ({
+         data: response.data.ideas
+       })
+       console.log(self.state.data, 'this is component didmount')
+     })
+
+
+  //     let pictures = response.json();
+  //     let ideas = pictures.ideas
+  //     let ideaColl = [];
+  //     ideas.forEach(function(idea){
+  //       ideaColl.push(idea)
+  //     })
+  //     this.setState ({
+  //       data : ideaColl
+  //     })
+  //   } catch (err) {
+  //     console.error('Encountered error fetching ideas', err);
+  // }
+}
+
+
+
+
 
   hideButton () {
     this.setState (() => {
