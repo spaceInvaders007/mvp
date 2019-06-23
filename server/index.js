@@ -9,11 +9,15 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static(__dirname + '/../client/dist'));
 
-app.post('/rsvps', (req, res) => {
+app.post('/addidea', (req, res) => {
   console.log(req.body)
   //console.log(req.data)
  // console.log(res.body)
 });
+
+app.get('/', (req, res) => {
+  console.log (res)
+})
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);

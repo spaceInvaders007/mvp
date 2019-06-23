@@ -2,6 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import axios from 'axios';
 import styled from 'styled-components';
+import IdeaForm from './IdeaForm.jsx';
 
 
 class App extends React.Component {
@@ -9,17 +10,20 @@ class App extends React.Component {
     super(props);
     this.state = {
       hideButton: false,
+      hideForm: false,
       ideaTitle: '',
       ideaDescription: '',
     };
     this.hideButton = this.hideButton.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+
   }
 
   hideButton () {
     this.setState (() => {
       return {
-        hideButton: !this.state.hideButton
+        hideButton: !this.state.hideButton,
+        hideForm: !this.state.hideForm
       }
     })
   }
@@ -28,49 +32,17 @@ class App extends React.Component {
     this.setState({[event.target.name]: event.target.value});
   }
 
-
   render () {
     return (
       <div>
-        <Logo>
-          We Gov
-        </Logo>
-        <Button onClick={this.hideButton} showButton={this.state.hideButton}>
-        Add idea
+        <Logo> We Gov </Logo>
+        <Button onClick={this.hideButton} showButton={this.state.hideButton} > Add idea
         </Button>
-        <IdeaForm>
-        <form onSubmit={this.onSubmit}>
-          <LabelTitleStyle >
-             Idea Title
-           <InputTitleStyle
-              type="text"
-              name="ideaTitle"
-              value={this.state.ideaTitle}
-              onChange={this.handleInputChange}>
-
-           </InputTitleStyle>
-          </LabelTitleStyle>
-          <LabelDescStyle>
-            Description
-            <InputDescStyle
-                type="text"
-                name="ideaDescription"
-                maxlength="20" >
-            </InputDescStyle>
-          </LabelDescStyle>
-          <LabelSubmitStyle>
-            <InputSubmitStyle
-              type="submit"
-              value="Submit">
-            </InputSubmitStyle>
-          </LabelSubmitStyle>
-          </form>
-        </IdeaForm>
+        { this.state.hideForm && (<div><IdeaForm/></div>) }
       </div>
     )
   }
 }
-
 
 
 const Button = styled.button`
@@ -84,6 +56,9 @@ const Button = styled.button`
     border: none;
     padding: 14px 20px;
     cursor: pointer;
+    :hover {
+      opacity: 0.8;
+    }
 `;
 
 
@@ -97,72 +72,8 @@ const Logo = styled.p`
     padding: 20px;
 `;
 
-const IdeaForm = styled.form`
-  background-color : #4CAF50;
-  margin: 12% auto;
 
-  border-radius: 20px;
-  border: 3px solid #f1f1f1;
-  width: 450px;
-  display: grid | inline-grid;
-  grid-template-rows:  25%  100px  auto ;
-  grid-template-areas:
-    "title"
-    "description"
-    "submit";
-  height: 450px;
-`
-const LabelStyle = styled.div`
-  color:white;
-  font-size: 30px;
-  padding: 20px;
-  height: 40px;
-  backgroundColor: #4CAF50;
-  display: grid;
-  margin: 10px auto;
-`
 
-const LabelTitleStyle = styled(LabelStyle)`
-  grid-area: title;
-  height: 90px;
-
-`
-
-const LabelDescStyle = styled(LabelStyle)`
-  grid-area: description;
-`
-
-const LabelSubmitStyle = styled(LabelStyle)`
-  grid-area: submit;
-`
-const InputTitleStyle = styled.input`
-  font-size: 20px;
-  padding: 10px;
-  margin-top: 12px;
-`
-
-const InputDescStyle = styled.textarea`
-  height: 100px;
-  borderRadius: 6px;
-  rows: 10;
-  padding: 10px;
-  font-size: 20px;
-  margin-top: 12px;
-  maxlength: 20;
-`
-const InputSubmitStyle = styled.input`
-  position: relative;
-  bottom: -120px;
-  font-size: 20px;
-  height: 50px;
-  background-color: black;
-  width: 150px;
-  border-radius: 10px;
-  color: white;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-`
 
 export default App;
 
@@ -210,3 +121,5 @@ export default App;
 //   )
 // }
 // }
+
+
