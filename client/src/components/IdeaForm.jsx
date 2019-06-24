@@ -34,7 +34,7 @@ class IdeaForm extends React.Component {
     console.log(this, 'hey this is this')
     var self = this;
     console.log('posting')
-    e.preventDefault();
+    //e.preventDefault();
     axios({
       method: 'post',
       url: 'http://localhost:3000/addidea',
