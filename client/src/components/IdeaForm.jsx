@@ -35,10 +35,6 @@ class IdeaForm extends React.Component {
     var self = this;
     console.log('posting')
     e.preventDefault();
-    // let databody = {
-    //   "title": self.state.ideaTitle,
-    //   "description": self.state.description
-    // }
     axios({
       method: 'post',
       url: 'http://localhost:3000/addidea',
@@ -55,10 +51,8 @@ class IdeaForm extends React.Component {
   render () {
     return (
       <div>
-
         <IdeaFormDiv
           onSubmit={this.handleSubmit}
-
         >
           <LabelTitleStyle >
              Idea Title
@@ -67,7 +61,6 @@ class IdeaForm extends React.Component {
               name="ideaTitle"
               value={this.state.ideaTitle}
               onChange={this.handleInputChange}>
-
            </InputTitleStyle>
           </LabelTitleStyle>
           <LabelDescStyle>
@@ -78,7 +71,6 @@ class IdeaForm extends React.Component {
                 maxLength="500"
                 value={this.state.ideaDescription}
                 onChange={this.handleInputChange}>
-
             >
             </InputDescStyle>
           </LabelDescStyle>
@@ -96,15 +88,11 @@ class IdeaForm extends React.Component {
   }
 }
 
-
 export default IdeaForm;
 
-
 const IdeaFormDiv = styled.form`
-
   background-color : #4CAF50;
-  margin: 12% auto;
-
+  margin: 12% auto 12% 12%;
   border-radius: 20px;
   border: 3px solid #f1f1f1;
   width: 450px;
@@ -115,6 +103,7 @@ const IdeaFormDiv = styled.form`
     "submit";
   height: 450px;
 `
+
 const LabelStyle = styled.div`
   color:white;
   font-size: 30px;
@@ -127,7 +116,6 @@ const LabelStyle = styled.div`
 const LabelTitleStyle = styled(LabelStyle)`
   grid-area: title;
   height: 90px;
-
 `
 
 const LabelDescStyle = styled(LabelStyle)`
@@ -137,6 +125,7 @@ const LabelDescStyle = styled(LabelStyle)`
 const LabelSubmitStyle = styled(LabelStyle)`
   grid-area: submit;
 `
+
 const InputTitleStyle = styled.input`
   font-size: 20px;
   padding: 10px;
@@ -154,6 +143,7 @@ const InputDescStyle = styled.textarea`
   maxlength: 20;
   cursor: pointer;
 `
+
 const InputSubmitStyle = styled.input`
   position: relative;
   bottom: 36px;
@@ -167,5 +157,3 @@ const InputSubmitStyle = styled.input`
   font-weight: bold;
   cursor: pointer;
   `
-
-  // ${p => p.showForm && `display: inherit;`}
